@@ -1,0 +1,22 @@
+{
+  "name": "dh-port",
+  "version": "0.0.1",
+  "homepage": "https://github.com/vidhill/equanimous-lamp",
+  "description": "New Personal Website",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "1.4.7",
+    "Scut": "scut#~1.2.1",
+    "html5shiv": "~3.7.3"
+  }
+}
