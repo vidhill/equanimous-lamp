@@ -17,10 +17,13 @@
   },
   "homepage": "https://github.com/vidhill/equanimous-lamp#readme",
   "devDependencies": {
+    "compression": "^1.6.0",
+    "connect": "^3.4.0",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-copy": "0.0.2",
     "gulp-sass": "^2.0.4",
-    "gulp-sourcemaps": "^1.6.0"
+    "gulp-sourcemaps": "^1.6.0",
+    "serve-static": "^1.10.0"
   }
 }
