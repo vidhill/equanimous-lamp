@@ -17,6 +17,9 @@ gulp.task('delete', function() {
 gulp.task('copy', function (){
 	gulp.src('src/*')
 		.pipe(gulp.dest('dest'));
+
+  gulp.src('angular-modules/**/*')
+    .pipe(gulp.dest('dest/angular-modules'));
 });
 
 

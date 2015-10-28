@@ -1,1 +1,1 @@
-angular.module('dhApp', []);
+angular.module('dhApp', ['sampleDirective']);
