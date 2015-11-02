@@ -8,21 +8,22 @@ var gulp = require('gulp'),
 
 	sourcemaps = require('gulp-sourcemaps'),
 
+  // html plugins
+  htmlhint = require('gulp-htmlhint'),
+
+  // javascript plugins
   eslint = require('gulp-eslint'),
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify')
 	;
 
 
-
-
-gulp.task('delete', function() {
+gulp.task('clean', function() {
   console.log('Deleting Dest');
   return del(['dest/*']);
 })
 
-
-gulp.task('copy', ['delete'], function (){
+gulp.task('copy', ['clean'], function (){
 	gulp.src('src/*')
 		.pipe(gulp.dest('dest'));
 
@@ -34,7 +35,7 @@ gulp.task('scripts', function () {
     gulp.src('angular-modules/**/*.js')
       
       .pipe(eslint({
-        configFile: 'config-files/eslint.json',
+        configFile: 'config-files/.eslintrc',
         globals: {
             'jQuery': false,
             'angular': false
@@ -52,7 +53,31 @@ gulp.task('scripts', function () {
       ;
 });
 
-gulp.task('sass', ['delete'], function () {
+gulp.task('html:template', function(){
+  gulp.src('angular-modules/**/*.html')
+    .pipe(htmlhint('config-files/.htmlhintrc'))
+    .pipe(htmlhint.reporter())
+    // .pipe(concat('all.js'))
+    .pipe(gulp.dest('dest'))
+    ;
+});
+
+gulp.task('html:page', function(){
+  gulp.src('src/*.html')
+    .pipe(htmlhint('config-files/.htmlhintrc'))
+    .pipe(htmlhint({
+        "doctype-first": true,
+        "doctype-html5": true,
+        "title-require": true,
+        "style-disabled": true
+    }))
+    .pipe(htmlhint.reporter())
+    ;
+
+});
+
+
+gulp.task('sass', ['clean'], function () {
   gulp.src('scss/*.scss')
   	.pipe(sourcemaps.init())
     .pipe(debug({title: 'unicorn:'}))
