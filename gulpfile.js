@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 
 	sourcemaps = require('gulp-sourcemaps'),
 
-  jslint = require('gulp-jslint'),
+  eslint = require('gulp-eslint'),
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify')
 	;
@@ -32,11 +32,18 @@ gulp.task('copy', ['delete'], function (){
 
 gulp.task('scripts', ['delete'], function () {
     gulp.src('angular-modules/**/*.js')
-      .pipe(jslint({
-          curly: true,
-          node: true,
-          predef: ['angular']
+      
+      .pipe(eslint({
+        configFile: 'config-files/eslint.json',
+        globals: {
+            'jQuery': false,
+            'angular': false
+        },
+        envs: [
+            'browser'
+        ]
       }))
+      .pipe(eslint.formatEach('compact', process.stderr))
       .pipe(sourcemaps.init({loadMaps: true}))
       .pipe(concat('all.js'))
       .pipe(uglify())
