@@ -30,7 +30,7 @@ gulp.task('copy', ['delete'], function (){
     .pipe(gulp.dest('dest/angular-modules'));
 });
 
-gulp.task('scripts', ['delete'], function () {
+gulp.task('scripts', function () {
     gulp.src('angular-modules/**/*.js')
       
       .pipe(eslint({
@@ -70,5 +70,11 @@ gulp.task('build', ['delete'], function(){
 });
 
 
-
 gulp.task('default', [ 'copy', 'sass', 'scripts' ]);
+
+
+
+
+
+
+
