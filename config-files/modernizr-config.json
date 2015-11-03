@@ -1,0 +1,20 @@
+{
+  "classPrefix": "",
+  "options": [],
+  "feature-detects": [
+    "css/flexbox",
+    "css/flexwrap",
+    "css/vwunit",
+    "img/sizes",
+    "img/srcset",
+    "img/webp",
+    "pointerevents",
+    "svg",
+    "svg/asimg",
+    "svg/clippaths",
+    "svg/filters",
+    "svg/foreignobject",
+    "svg/inline",
+    "touchevents"
+  ]
+}
