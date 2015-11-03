@@ -10,6 +10,7 @@ var gulp = require('gulp'),
 
   // html plugins
   htmlhint = require('gulp-htmlhint'),
+  templateCache = require('gulp-angular-templatecache'),
 
   // javascript plugins
   eslint = require('gulp-eslint'),
@@ -55,10 +56,16 @@ gulp.task('scripts', function () {
 
 gulp.task('html:template', function(){
   gulp.src('angular-modules/**/*.html')
+    .pipe(sourcemaps.init())
     .pipe(htmlhint('config-files/.htmlhintrc'))
     .pipe(htmlhint.reporter())
-    // .pipe(concat('all.js'))
-    .pipe(gulp.dest('dest'))
+    .pipe(templateCache('html-partials.js', {
+        standalone: true,
+        module: 'dhPartials',
+        root: 'angular-modules'
+    }))
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest('dest/js'))
     ;
 });
 
@@ -80,7 +87,7 @@ gulp.task('html:page', function(){
 gulp.task('sass', ['clean'], function () {
   gulp.src('scss/*.scss')
   	.pipe(sourcemaps.init())
-    .pipe(debug({title: 'unicorn:'}))
+    //.pipe(debug({title: 'unicorn:'}))
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest('dest/css'));
@@ -90,12 +97,12 @@ gulp.task('sass:watch', function () {
   gulp.watch('scss/*.scss', ['sass']);
 });
 
-gulp.task('build', ['delete'], function(){
+gulp.task('build', ['clean'], function(){
     console.log('cleaning done, go');
 });
 
 
-gulp.task('default', [ 'copy', 'sass', 'scripts' ]);
+gulp.task('default', [ 'copy', 'sass', 'scripts', 'html:template' ]);
 
 
 
