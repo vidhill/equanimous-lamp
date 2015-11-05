@@ -1,6 +1,8 @@
 {
   "classPrefix": "",
-  "options": [],
+  "crawl": false,
+  "dest": "./lib/modernizr-custom.js",
+  "options": [], 
   "feature-detects": [
     "css/flexbox",
     "css/flexwrap",
@@ -17,4 +19,5 @@
     "svg/inline",
     "touchevents"
   ]
+
 }
