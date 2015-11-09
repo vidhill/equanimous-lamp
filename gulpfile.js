@@ -32,9 +32,21 @@ var gulp = require('gulp'),
 gulp.task('clean', function() {
   console.log('Deleting Dest');
   return del(['dest/*']);
+});
+
+gulp.task('clean:scss', function() {
+  console.log('Deleting CSS');
+  return del(['dest/css']);
 })
 
-gulp.task('copy', ['clean'], function (){
+gulp.task('clean:js', function() {
+  console.log('Deleting JS');
+  return del(['dest/js']);
+})
+
+
+
+gulp.task('copy', function (){
 	gulp.src('src/*')
 		.pipe(gulp.dest('dest'));
 
@@ -42,26 +54,26 @@ gulp.task('copy', ['clean'], function (){
     .pipe(gulp.dest('dest/angular-modules'));
 });
 
-gulp.task('scripts', function () {
-    gulp.src('angular-modules/**/*.js')
-      
-      .pipe(eslint({
-        configFile: 'config-files/.eslintrc',
-        globals: {
-            'jQuery': false,
-            'angular': false
-        },
-        envs: [
-            'browser'
-        ]
-      }))
-      .pipe(eslint.formatEach('compact', process.stderr))
-      .pipe(sourcemaps.init({loadMaps: true}))
-      .pipe(concat('all.js'))
-      .pipe(uglify())
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('dest/js'))
-      ;
+gulp.task('scripts', ['clean:js'], function () {
+      gulp.src('angular-modules/**/*.js')  
+        .pipe(eslint({
+          configFile: 'config-files/.eslintrc',
+          globals: {
+              'jQuery': false,
+              'angular': false
+          },
+          envs: [
+              'browser'
+          ]
+        }))
+        .pipe(eslint.formatEach('compact', process.stderr))
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(concat('all.js'))
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('dest/js'))
+        ;
+
 });
 
 gulp.task('html:template', function(){
@@ -130,7 +142,7 @@ gulp.task('modernizr', function(){
 });
 
 
-gulp.task('sass', ['clean'], function () {
+gulp.task('sass', ['clean:scss'], function () {
   gulp.src('scss/*.scss')
   	.pipe(sourcemaps.init())
     //.pipe(debug({title: 'unicorn:'}))
@@ -139,7 +151,8 @@ gulp.task('sass', ['clean'], function () {
     .pipe(gulp.dest('dest/css'));
 });
  
-gulp.task('sass:watch', function () {
+gulp.task('watch', function () {
+  gulp.watch('angular-modules/**/*.js', ['scripts']);
   gulp.watch('scss/*.scss', ['sass']);
 });
 
