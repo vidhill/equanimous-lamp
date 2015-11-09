@@ -3,6 +3,7 @@
 var gulp = require('gulp'),
 	del = require('del'),
   debug = require('gulp-debug'),
+  rename = require("gulp-rename"),
 
 	sass = require('gulp-sass'),
 
@@ -15,7 +16,16 @@ var gulp = require('gulp'),
   // javascript plugins
   eslint = require('gulp-eslint'),
   concat = require('gulp-concat'),
-  uglify = require('gulp-uglify')
+  uglify = require('gulp-uglify'),
+
+  modernizr = require("modernizr"),
+
+  gutil = require('gulp-util'), // gulp utilities
+ 
+  Stream = require('stream'),
+
+  mzrConfig = require('./config-files/modernizr-config.json')
+
 	;
 
 
@@ -80,7 +90,43 @@ gulp.task('html:page', function(){
     }))
     .pipe(htmlhint.reporter())
     ;
+});
 
+
+gulp.task('modernizr', function(){
+  
+  function fileFromString(filename, string) {
+  var src = require('stream').Readable({ objectMode: true });
+
+    src._read = function () {
+      this.push(new gutil.File({
+        cwd: "",
+        base: "",
+        path: filename,
+        contents: new Buffer(string) 
+      }));
+
+      this.push(null); // end filestream
+    }
+    return src
+  }
+  
+  modernizr.build({
+    "options": [], 
+    "feature-detects": [
+      "css/flexbox",
+      "svg"
+    ]
+  }, function (result) {
+    
+    return fileFromString("modernizr.js", result)
+      //.pipe(gulp.dest('libs/'))
+      .pipe(uglify())
+      .pipe(rename({extname: '.min.js' }))
+      .pipe(gulp.dest('libs/'));
+
+  });
+    
 });
 
 
