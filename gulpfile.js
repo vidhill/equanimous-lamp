@@ -1,47 +1,56 @@
 'use strict';
- 
+
 var gulp = require('gulp'),
-	del = require('del'),
-  debug = require('gulp-debug'),
-  rename = require("gulp-rename"),
+    mzrConfig = require('./config-files/modernizr-config.json')
+  ;
 
-	sass = require('gulp-sass'),
+ 
+var plugins = {
 
-	sourcemaps = require('gulp-sourcemaps'),
+  del: require('del'),
+  debug: require('gulp-debug'),
+  rename: require("gulp-rename"),
+
+  sass: require('gulp-sass'),
+
+  sourcemaps: require('gulp-sourcemaps'),
 
   // html plugins
-  htmlhint = require('gulp-htmlhint'),
-  templateCache = require('gulp-angular-templatecache'),
+  htmlhint: require('gulp-htmlhint'),
+  templateCache: require('gulp-angular-templatecache'),
 
   // javascript plugins
-  eslint = require('gulp-eslint'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
+  eslint: require('gulp-eslint'),
+  concat: require('gulp-concat'),
+  uglify: require('gulp-uglify'),
 
-  modernizr = require("modernizr"),
+  modernizr: require("modernizr"),
 
-  gutil = require('gulp-util'), // gulp utilities
+  gutil: require('gulp-util'), // gulp utilities
  
-  Stream = require('stream'),
+  Stream: require('stream')
 
-  mzrConfig = require('./config-files/modernizr-config.json')
+};
 
-	;
+gulp.task('scripts', ['clean:js'], require('./gulp-tasks/scripts')( gulp, plugins ));
+gulp.task('sass', ['clean:scss'], require('./gulp-tasks/sass')( gulp, plugins ));
+
+gulp.task('modernizr', require('./gulp-tasks/build-modernizr')( gulp, plugins, mzrConfig ));
 
 
 gulp.task('clean', function() {
   console.log('Deleting Dest');
-  return del(['dest/*']);
+  return plugins.del(['dest/*']);
 });
 
 gulp.task('clean:scss', function() {
   console.log('Deleting CSS');
-  return del(['dest/css']);
+  return plugins.del(['dest/css']);
 })
 
 gulp.task('clean:js', function() {
   console.log('Deleting JS');
-  return del(['dest/js']);
+  return plugins.del(['dest/js']);
 })
 
 
@@ -54,27 +63,7 @@ gulp.task('copy', function (){
     .pipe(gulp.dest('dest/angular-modules'));
 });
 
-gulp.task('scripts', ['clean:js'], function () {
-      gulp.src('angular-modules/**/*.js')  
-        .pipe(eslint({
-          configFile: 'config-files/.eslintrc',
-          globals: {
-              'jQuery': false,
-              'angular': false
-          },
-          envs: [
-              'browser'
-          ]
-        }))
-        .pipe(eslint.formatEach('compact', process.stderr))
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(concat('all.js'))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dest/js'))
-        ;
 
-});
 
 gulp.task('html:template', function(){
   gulp.src('angular-modules/**/*.html')
@@ -105,51 +94,10 @@ gulp.task('html:page', function(){
 });
 
 
-gulp.task('modernizr', function(){
-  
-  function fileFromString(filename, string) {
-  var src = require('stream').Readable({ objectMode: true });
-
-    src._read = function () {
-      this.push(new gutil.File({
-        cwd: "",
-        base: "",
-        path: filename,
-        contents: new Buffer(string) 
-      }));
-
-      this.push(null); // end filestream
-    }
-    return src
-  }
-  
-  modernizr.build({
-    "options": [], 
-    "feature-detects": [
-      "css/flexbox",
-      "svg"
-    ]
-  }, function (result) {
-    
-    return fileFromString("modernizr.js", result)
-      //.pipe(gulp.dest('libs/'))
-      .pipe(uglify())
-      .pipe(rename({extname: '.min.js' }))
-      .pipe(gulp.dest('libs/'));
-
-  });
-    
-});
 
 
-gulp.task('sass', ['clean:scss'], function () {
-  gulp.src('scss/*.scss')
-  	.pipe(sourcemaps.init())
-    //.pipe(debug({title: 'unicorn:'}))
-    .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('dest/css'));
-});
+
+
  
 gulp.task('watch', function () {
   gulp.watch('angular-modules/**/*.js', ['scripts']);
