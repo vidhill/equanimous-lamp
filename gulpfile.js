@@ -1,7 +1,8 @@
 'use strict';
 
 var gulp = require('gulp'),
-    mzrConfig = require('./config-files/modernizr-config.json')
+    mzrConfig = require('./config-files/modernizr-config.json'),
+    partialLintOpts = require('./config-files/htmlhint-config.json')
   ;
 
  
@@ -27,6 +28,8 @@ var plugins = {
   modernizr: require("modernizr"),
 
   gutil: require('gulp-util'), // gulp utilities
+  extend: require('util')._extend,
+
  
   Stream: require('stream')
 
@@ -54,7 +57,6 @@ gulp.task('clean:js', function() {
 })
 
 
-
 gulp.task('copy', function (){
 	gulp.src('src/*')
 		.pipe(gulp.dest('dest'));
@@ -64,39 +66,10 @@ gulp.task('copy', function (){
 });
 
 
+var htmlTasks = require('./gulp-tasks/html')( gulp, plugins, partialLintOpts);
 
-gulp.task('html:template', function(){
-  gulp.src('angular-modules/**/*.html')
-    .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.htmlhint('config-files/.htmlhintrc'))
-    .pipe(plugins.htmlhint.reporter())
-    .pipe(plugins.templateCache('html-partials.js', {
-        standalone: true,
-        module: 'dhPartials',
-        root: 'angular-modules'
-    }))
-    .pipe(plugins.sourcemaps.write('./maps'))
-    .pipe(gulp.dest('dest/js'))
-    ;
-});
-
-gulp.task('html:page', function(){
-  gulp.src('src/*.html')
-    .pipe(plugins.htmlhint('config-files/.htmlhintrc'))
-    .pipe(plugins.htmlhint({
-        "doctype-first": true,
-        "doctype-html5": true,
-        "title-require": true,
-        "style-disabled": true
-    }))
-    .pipe(plugins.htmlhint.reporter())
-    ;
-});
-
-
-
-
-
+gulp.task('html:template', htmlTasks.template );
+gulp.task('html:page', htmlTasks.page );
 
  
 gulp.task('watch', function () {
@@ -110,10 +83,5 @@ gulp.task('build', ['clean'], function(){
 
 
 gulp.task('default', [ 'copy', 'sass', 'scripts', 'html:template' ]);
-
-
-
-
-
 
 
