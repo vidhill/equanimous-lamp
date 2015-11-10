@@ -1,5 +1,8 @@
 {
-  "options": [], 
+  "options": [
+    "html5shiv",
+    "setClasses"
+  ], 
   "feature-detects": [
     "css/flexbox",
     "css/flexwrap",
@@ -7,11 +10,6 @@
     "pointerevents",
     "svg",
     "svg/asimg",
-    "svg/clippaths",
-    "svg/filters",
-    "svg/foreignobject",
-    "svg/inline",
     "touchevents"
   ]
-
 }
