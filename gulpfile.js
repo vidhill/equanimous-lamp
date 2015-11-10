@@ -67,29 +67,29 @@ gulp.task('copy', function (){
 
 gulp.task('html:template', function(){
   gulp.src('angular-modules/**/*.html')
-    .pipe(sourcemaps.init())
-    .pipe(htmlhint('config-files/.htmlhintrc'))
-    .pipe(htmlhint.reporter())
-    .pipe(templateCache('html-partials.js', {
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.htmlhint('config-files/.htmlhintrc'))
+    .pipe(plugins.htmlhint.reporter())
+    .pipe(plugins.templateCache('html-partials.js', {
         standalone: true,
         module: 'dhPartials',
         root: 'angular-modules'
     }))
-    .pipe(sourcemaps.write('./maps'))
+    .pipe(plugins.sourcemaps.write('./maps'))
     .pipe(gulp.dest('dest/js'))
     ;
 });
 
 gulp.task('html:page', function(){
   gulp.src('src/*.html')
-    .pipe(htmlhint('config-files/.htmlhintrc'))
-    .pipe(htmlhint({
+    .pipe(plugins.htmlhint('config-files/.htmlhintrc'))
+    .pipe(plugins.htmlhint({
         "doctype-first": true,
         "doctype-html5": true,
         "title-require": true,
         "style-disabled": true
     }))
-    .pipe(htmlhint.reporter())
+    .pipe(plugins.htmlhint.reporter())
     ;
 });
 
