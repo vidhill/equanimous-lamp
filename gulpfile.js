@@ -13,6 +13,7 @@ var plugins = {
   rename: require("gulp-rename"),
 
   sass: require('gulp-sass'),
+  autoprefixer: require('gulp-autoprefixer'),
 
   sourcemaps: require('gulp-sourcemaps'),
 
