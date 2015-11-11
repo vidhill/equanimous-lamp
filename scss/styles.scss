@@ -1,1 +1,10 @@
-body { background: red; }
+@import '../node_modules/scut/dist/scut';
+
+nav ul {
+    @include scut-list-floated();
+}
+
+
+body { 
+    background: #CCC; 
+}
