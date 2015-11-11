@@ -2,7 +2,8 @@
 
 var gulp = require('gulp'),
     mzrConfig = require('./config-files/modernizr-config.json'),
-    partialLintOpts = require('./config-files/htmlhint-config.json')
+    partialLintOpts = require('./config-files/htmlhint-config.json'),
+    runSequence = require('run-sequence')
   ;
 
  
@@ -42,19 +43,17 @@ gulp.task('sass', ['clean:scss'], require('./gulp-tasks/sass')( gulp, plugins ))
 gulp.task('modernizr', require('./gulp-tasks/build-modernizr')( gulp, plugins, mzrConfig ));
 
 
-gulp.task('clean', function() {
+gulp.task('clean', function(cb) {
   console.log('Deleting Dest');
-  return plugins.del(['dest/*']);
+  return plugins.del(['dest/*'], cb);
 });
 
-gulp.task('clean:scss', function() {
-  console.log('Deleting CSS');
-  return plugins.del(['dest/css']);
+gulp.task('clean:scss', function(cb) {
+  return plugins.del(['dest/css'], cb);
 })
 
-gulp.task('clean:js', function() {
-  console.log('Deleting JS');
-  return plugins.del(['dest/js']);
+gulp.task('clean:js', function(cb) {
+  return plugins.del(['dest/js'], cb);
 })
 
 
@@ -78,11 +77,7 @@ gulp.task('watch', function () {
   gulp.watch('scss/*.scss', ['sass']);
 });
 
-gulp.task('build', ['clean'], function(){
-    console.log('cleaning done, go');
+gulp.task('build', function(cb){
+    runSequence('clean', [ 'copy', 'sass', 'scripts', 'html:template' ], cb);
 });
-
-
-gulp.task('default', [ 'copy', 'sass', 'scripts', 'html:template' ]);
-
 
