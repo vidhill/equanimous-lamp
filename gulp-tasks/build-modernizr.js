@@ -21,10 +21,10 @@ module.exports = function (gulp, plugins, config) {
       plugins.modernizr.build(config, function (result) {
         
         return fileFromString("modernizr.js", result)
-          .pipe(gulp.dest('libs/'))
+          .pipe(gulp.dest('third-party-libs/modernizr'))
           .pipe(plugins.uglify())
           .pipe(plugins.rename({extname: '.min.js' }))
-          .pipe(gulp.dest('libs/'));
+          .pipe(gulp.dest('third-party-libs/modernizr'));
 
       });
 
