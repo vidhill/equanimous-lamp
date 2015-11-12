@@ -1,5 +1,10 @@
 @import '../node_modules/scut/dist/scut';
 
+@import 'partials/variables';
+@import 'partials/mixins';
+
+@import '../third-party-libs/components/modularized-normalize-scss/_normalize.scss';
+
 nav ul {
     @include scut-list-floated();
 }

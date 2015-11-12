@@ -19,6 +19,7 @@
     "angular-route": "~1.4.7",
     "angular-animate": "~1.4.7",
     "angular-touch": "~1.4.7",
-    "angular-scroll": "~0.7.3"
+    "angular-scroll": "~0.7.3",
+    "modularized-normalize-scss": "~3.0.3"
   }
 }
