@@ -20,7 +20,6 @@ var plugins = {
 
   // html plugins
   htmlhint: require('gulp-htmlhint'),
-  templateCache: require('gulp-angular-templatecache'),
 
   // javascript plugins
   eslint: require('gulp-eslint'),
@@ -31,6 +30,7 @@ var plugins = {
 
   gutil: require('gulp-util'), // gulp utilities
   extend: require('util')._extend,
+  inject: require('gulp-inject'),
 
  
   Stream: require('stream')
@@ -58,19 +58,14 @@ gulp.task('clean:js', function(cb) {
 
 
 gulp.task('copy', function (){
-	gulp.src('src/*')
+	gulp.src('src/*.js')
 		.pipe(gulp.dest('dest'));
 
-  gulp.src('angular-modules/**/*')
+  gulp.src('angular-modules/**/*.html')
     .pipe(gulp.dest('dest/angular-modules'));
 });
 
-
-var htmlTasks = require('./gulp-tasks/html')( gulp, plugins, partialLintOpts);
-
-gulp.task('html:template', htmlTasks.template );
-gulp.task('html:page', htmlTasks.page );
-
+gulp.task('html', require('./gulp-tasks/html')( gulp, plugins, partialLintOpts));
  
 gulp.task('watch', function () {
   gulp.watch('angular-modules/**/*.js', ['scripts']);
@@ -78,6 +73,6 @@ gulp.task('watch', function () {
 });
 
 gulp.task('build', function(cb){
-    runSequence('clean', [ 'copy', 'sass', 'scripts', 'html:template' ], cb);
+    runSequence('clean', [ 'copy', 'sass', 'scripts', 'html' ], cb);
 });
 
