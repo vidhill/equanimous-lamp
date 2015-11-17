@@ -7,7 +7,6 @@ module.exports = function(gulp, plugins, config){
 
     var templateStream = 
         gulp.src(['angular-modules/**/*.html', '!angular-modules/pages/**'])
-            .pipe(plugins.sourcemaps.init())
             .pipe(plugins.htmlhint(config))
             .pipe(plugins.htmlhint.reporter())
         ;
