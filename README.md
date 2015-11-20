@@ -19,3 +19,4 @@ Building a 3rd party libs dependancies package using Bower
   * Unit testing of angular-modules using Karma and Jasmine
   * Creating SVG Sprites using SVG Store 
   * Utilise Browser sync http://browsersync.io
+  * Generate favicons, gulp-favicons
