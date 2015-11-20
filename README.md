@@ -4,7 +4,12 @@
 What is intended to become a new version of my personal site 
 
 Might look like a massively overcomplicated build process but I am using this as a test project.  
-I'm recreating the typical production build (plus some more) for UI projects that we do at my day job using Maven
+I'm recreating the typical build steps for UI projects that we do at my day job using Maven.
+
+Additionally I am trying out some new things:
+  * including linting of html partials and documents (to enforce best practices and code style conventions). 
+  * linting of scss
+  * Autoprefixr
 
 Using an all Node + Gulp build process
 Building a 3rd party libs dependancies package using Bower
