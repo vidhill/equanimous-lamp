@@ -9,6 +9,8 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="dns-prefetch" href="//libs.vidhill.com/">
+    <link rel="author" href="humans.txt" />
 	<title>Document </title>
 	<link rel="stylesheet" href="css/styles.css">
 	
@@ -19,7 +21,7 @@
 	
 </head>
 <body ng-app="dhApp" >
-	<div>
+	<div class="wrapper">
 		<nav>
 			<ul>
 				<li>
@@ -32,7 +34,7 @@
 		</nav>
 		<section>
 			{{ 1+1 }}
-			<div sample-directive></div>
+			<div ng-view>Give me a sec..</div>
 		</section>
 		<footer>
 			&copy; David Hill 2015
