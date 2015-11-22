@@ -4,12 +4,26 @@
 @import 'partials/variables';
 @import 'partials/mixins';
 
+// customise the select colour
+::selection { background-color:#FFCC00; }
 
 nav ul {
     @include scut-list-floated();
 }
 
-
 body { 
     background: #CCC; 
+}
+
+.wrapper {
+    max-width: 998px;
+    background: #FFF;
+    
+    margin: 0 auto;
+}
+
+footer {
+    background: #333;
+    color: #EEE;
+    padding: 1em 2em;
 }
