@@ -1,1 +1,10 @@
-angular.module('dhApp', ['sampleDirective']);
+angular.module('dhApp', [
+    'ngRoute',
+    'homePage'
+    ])
+    .config(['$routeProvider', function($routeProvider){
+        $routeProvider.
+            otherwise({
+                redirectTo: '/'
+            });
+    }]);;
