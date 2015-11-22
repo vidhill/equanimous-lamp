@@ -69,6 +69,7 @@ gulp.task('html', require('./gulp-tasks/html')( gulp, plugins, partialLintOpts))
  
 gulp.task('watch', function () {
   gulp.watch('angular-modules/**/*.js', ['scripts']);
+  gulp.watch('angular-modules/**/*.html', ['html']);
   gulp.watch('scss/*.scss', ['sass']);
 });
 
