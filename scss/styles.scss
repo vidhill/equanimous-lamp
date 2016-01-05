@@ -16,10 +16,14 @@ body {
 }
 
 .wrapper {
-    max-width: 998px;
+    max-width: 45em;
     background: #FFF;
     
     margin: 0 auto;
+
+    & > section, & > nav {
+        padding: 1em;
+    }
 }
 
 footer {
