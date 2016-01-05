@@ -1,8 +1,6 @@
 'use strict';
 
-var htmlVars = {
-  jsSuffix: 'min.js'
-};
+
 
 var gulp = require('gulp'),
     mzrConfig = require('./config-files/modernizr-config.json'),
@@ -10,6 +8,10 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence')
   ;
 
+var htmlVars = {
+  staticsUrl: '//libs.vidhill.com',
+  jsSuffix: 'min.js'
+};
  
 var plugins = {
 
