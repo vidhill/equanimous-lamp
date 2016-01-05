@@ -1,5 +1,9 @@
 'use strict';
 
+var htmlVars = {
+  jsSuffix: 'min.js'
+};
+
 var gulp = require('gulp'),
     mzrConfig = require('./config-files/modernizr-config.json'),
     partialLintOpts = require('./config-files/htmlhint-config.json'),
@@ -66,7 +70,7 @@ gulp.task('copy', function (){
     .pipe(gulp.dest('dest/angular-modules'));
 });
 
-gulp.task('html', require('./gulp-tasks/html')( gulp, plugins, partialLintOpts));
+gulp.task('html', require('./gulp-tasks/html')( gulp, plugins, partialLintOpts, htmlVars));
  
 gulp.task('watch', function () {
   gulp.watch('angular-modules/**/*.js', ['scripts']);

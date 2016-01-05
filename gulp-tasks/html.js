@@ -1,4 +1,4 @@
-module.exports = function(gulp, plugins, config){
+module.exports = function(gulp, plugins, config, htmlVars){
     
     var myFunc = function (path, file) {
         var scriptTag = '<script type="text/ng-template" id="' + path + '">' + '\n';
@@ -23,6 +23,7 @@ module.exports = function(gulp, plugins, config){
         });
 
         gulp.src('src/*.html')
+            .pipe(plugins.template(htmlVars))
             .pipe(plugins.htmlhint(pageLintConfig))
             .pipe(plugins.htmlhint.reporter())
             .pipe(plugins.inject(
