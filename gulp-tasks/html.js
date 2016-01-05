@@ -24,12 +24,6 @@ module.exports = function(gulp, plugins, config){
 
         gulp.src('src/*.html')
             .pipe(plugins.htmlhint(pageLintConfig))
-            .pipe(plugins.htmlhint({
-                "doctype-first": true,
-                "doctype-html5": true,
-                "title-require": true,
-                "style-disabled": true
-            }))
             .pipe(plugins.htmlhint.reporter())
             .pipe(plugins.inject(
                 templateStream, { 
