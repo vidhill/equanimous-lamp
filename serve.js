@@ -4,7 +4,7 @@ var connect = require('connect'),
 	compression = require('compression')
 ;
  
-var app = connect()
+var app = connect();
  
 // gzip/deflate outgoing responses 
 app.use(compression());
