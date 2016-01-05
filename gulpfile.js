@@ -58,7 +58,7 @@ gulp.task('clean:js', function(cb) {
 
 
 gulp.task('copy', function (){
-	gulp.src('src/*.js')
+	gulp.src(['src/*', '!src/index.html'])
 		.pipe(gulp.dest('dest'));
 
   gulp.src('angular-modules/**/*.html')
