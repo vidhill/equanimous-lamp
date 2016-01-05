@@ -20,6 +20,7 @@ var plugins = {
 
   // html plugins
   htmlhint: require('gulp-htmlhint'),
+  template: require('gulp-template'),
 
   // javascript plugins
   eslint: require('gulp-eslint'),
