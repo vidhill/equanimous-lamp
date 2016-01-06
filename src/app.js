@@ -4,6 +4,18 @@ angular.module('dhApp', [
     ])
     .config(['$routeProvider', function($routeProvider){
         $routeProvider
+            .when('/page/link1', {
+                template: 'Page fone'
+            })
+            .when('/page/link2', {
+                template: 'Page foo'
+            })
+            .when('/page/link3', {
+                template: 'Page free'
+            })
+            .when('/page/link4', {
+                template: 'Page foour'
+            })
             .otherwise({
                 redirectTo: '/'
             });
