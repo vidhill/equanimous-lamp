@@ -22,18 +22,13 @@
 </head>
 <body ng-app="dhApp" >
 	<div class="wrapper">
-		<nav>
+		<nav ng-controller="dhNavCtrl">
 			<ul>
-				<li>
-					<a href="">Link 1</a>
-					<a href="">Link 2</a>
-					<a href="">Link 3</a>
-					<a href="">Link 4</a>
-				</li>
+				<li> <a href="#/">Home</a> </li>
+				<li ng-repeat="link in links" > <a ng-href="#/page/{{link.path}}">{{link.title}}</a> </li>
 			</ul>
 		</nav>
 		<section>
-			{{ 1+1 }}
 			<div ng-view>Give me a sec..</div>
 		</section>
 		<footer>
