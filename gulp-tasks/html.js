@@ -18,8 +18,7 @@ module.exports = function(gulp, plugins, config, htmlVars){
         var pageLintConfig = plugins.extend(config, {
           "doctype-first": true,
           "doctype-html5": true,
-          "title-require": true,
-          "style-disabled": true
+          "title-require": true
         });
 
         gulp.src('src/*.html')
