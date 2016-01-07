@@ -1,8 +1,8 @@
 module.exports = function(gulp, plugins, config, htmlVars){
     
-    var myFunc = function (path, file) {
-        var scriptTag = '<script type="text/ng-template" id="' + path + '">' + '\n';
-        return scriptTag + file.contents.toString('utf8') + '\n' + '</script>';
+    var angularTemplateTag = function (path, file) {
+        var scriptTag = '<script type="text/ng-template" id="' + path + '">';
+        return scriptTag + '\n' + file.contents.toString('utf8') + '\n' + '</script>';
     };
 
     var templateStream = 
@@ -26,11 +26,20 @@ module.exports = function(gulp, plugins, config, htmlVars){
             .pipe(plugins.htmlhint(pageLintConfig))
             .pipe(plugins.htmlhint.reporter())
             .pipe(plugins.inject(
-                templateStream, { 
-                    read: false ,
+                gulp.src('src/critical.css')
+                    .pipe(plugins.cssmin()), 
+                { 
+                    transform: function(filePath, file) {
+                        return '<style>' + file.contents.toString('utf8') + '</style>';
+                    }
+                }
+            ))
+            .pipe(plugins.inject(
+                templateStream, 
+                { 
                     starttag: '<!-- inject:partials:{{ext}} -->',
                     transform: function (filePath, file) {
-                        return myFunc(filePath, file);
+                        return angularTemplateTag(filePath, file);
                     }
                 })
             ).pipe(gulp.dest('./dest'));

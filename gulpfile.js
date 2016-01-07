@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 var gulp = require('gulp'),
     mzrConfig = require('./config-files/modernizr-config.json'),
     partialLintOpts = require('./config-files/htmlhint-config.json'),
@@ -19,14 +17,17 @@ var plugins = {
   debug: require('gulp-debug'),
   rename: require("gulp-rename"),
 
+  // css plugins
   sass: require('gulp-sass'),
   autoprefixer: require('gulp-autoprefixer'),
+  cssmin: require('gulp-cssmin'),
 
   sourcemaps: require('gulp-sourcemaps'),
 
   // html plugins
   htmlhint: require('gulp-htmlhint'),
   template: require('gulp-template'),
+  inject: require('gulp-inject'),
 
   // javascript plugins
   eslint: require('gulp-eslint'),
@@ -37,8 +38,6 @@ var plugins = {
 
   gutil: require('gulp-util'), // gulp utilities
   extend: require('util')._extend,
-  inject: require('gulp-inject'),
-
  
   Stream: require('stream')
 
@@ -65,7 +64,7 @@ gulp.task('clean:js', function(cb) {
 
 
 gulp.task('copy', function (){
-	gulp.src(['src/*', '!src/index.html'])
+	gulp.src(['src/*', '!src/index.html', '!src/*.css'])
 		.pipe(gulp.dest('dest'));
 
   gulp.src('angular-modules/**/*.html')
