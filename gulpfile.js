@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp'),
+    npmPackage = require('./package.json'),
     mzrConfig = require('./config-files/modernizr-config.json'),
     partialLintOpts = require('./config-files/htmlhint-config.json'),
     runSequence = require('run-sequence')
@@ -8,9 +9,10 @@ var gulp = require('gulp'),
 
 var htmlVars = {
   staticsUrl: '//libs.vidhill.com',
-  jsSuffix: 'min.js'
+  jsSuffix: 'min.js',
+  releaseVers: npmPackage.version
 };
- 
+
 var plugins = {
 
   del: require('del'),
