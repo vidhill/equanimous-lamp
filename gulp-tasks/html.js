@@ -1,8 +1,8 @@
 module.exports = function(gulp, plugins, config, htmlVars){
     
     var angularTemplateTag = function (path, file) {
-        var scriptTag = '<script type="text/ng-template" id="' + path + '">';
-        return scriptTag + '\n' + file.contents.toString('utf8') + '\n' + '</script>';
+        var scriptTag = '<script type="text/ng-template" id="' + path.substr(1) + '">'; // remove forward slash
+        return scriptTag + file.contents.toString('utf8') + '</script>';
     };
 
     var templateStream = 
