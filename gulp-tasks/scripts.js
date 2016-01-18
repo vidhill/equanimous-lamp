@@ -1,6 +1,9 @@
-module.exports = function (gulp, plugins) {
+module.exports = function (gulp, plugins, pkg ) {
 
   return function () {
+
+      var headerText = plugins.fs.readFileSync('config-files/js-header-text.js', 'utf8');
+      var d = new Date();
 
       gulp.src('angular-modules/**/*.js')  
         .pipe(plugins.eslint({
@@ -18,8 +21,11 @@ module.exports = function (gulp, plugins) {
         .pipe(plugins.concat('all.js'))
         .pipe(plugins.uglify())
         .pipe(plugins.sourcemaps.write('./'))
+        .pipe(plugins.header(headerText + '\n' , { pkg: pkg, date: d.toDateString() } ))
         .pipe(gulp.dest('dest/js'))
         ;
+
+        
 
   };
 

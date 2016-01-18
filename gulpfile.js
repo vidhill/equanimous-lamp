@@ -18,6 +18,7 @@ var plugins = {
   del: require('del'),
   debug: require('gulp-debug'),
   rename: require("gulp-rename"),
+  fs: require('fs'), 
 
   // css plugins
   sass: require('gulp-sass'),
@@ -28,6 +29,7 @@ var plugins = {
 
   // html plugins
   htmlhint: require('gulp-htmlhint'),
+  htmlMin: require('gulp-htmlmin'),
   template: require('gulp-template'),
   inject: require('gulp-inject'),
 
@@ -35,6 +37,7 @@ var plugins = {
   eslint: require('gulp-eslint'),
   concat: require('gulp-concat'),
   uglify: require('gulp-uglify'),
+  header: require('gulp-header'),
 
   modernizr: require("modernizr"),
 
@@ -45,7 +48,7 @@ var plugins = {
 
 };
 
-gulp.task('scripts', ['clean:js'], require('./gulp-tasks/scripts')( gulp, plugins ));
+gulp.task('scripts', ['clean:js'], require('./gulp-tasks/scripts')( gulp, plugins, npmPackage ));
 gulp.task('sass', ['clean:scss'], require('./gulp-tasks/sass')( gulp, plugins ));
 
 gulp.task('modernizr', require('./gulp-tasks/build-modernizr')( gulp, plugins, mzrConfig ));
@@ -70,6 +73,9 @@ gulp.task('copy', function (){
 		.pipe(gulp.dest('dest'));
 
   gulp.src('angular-modules/**/*.html')
+    .pipe(plugins.htmlhint(partialLintOpts))
+    .pipe(plugins.htmlhint.reporter())
+    // .pipe(plugins.htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('dest/angular-modules'));
 });
 
