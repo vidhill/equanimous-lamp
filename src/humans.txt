@@ -2,7 +2,6 @@
 /* TEAM */                            
     UI developer: David Hill
     Contact: d [at] vidhill.com
-    Site: email, link to a contact form, etc.
     Twitter: @vidhill
     From: Cork, Ireland
 

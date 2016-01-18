@@ -7,6 +7,7 @@ module.exports = function(gulp, plugins, config, htmlVars){
 
     var templateStream = 
         gulp.src(['angular-modules/**/*.html', '!angular-modules/pages/**'])
+            .pipe(plugins.htmlMin({ collapseWhitespace: true }))
             .pipe(plugins.htmlhint(config))
             .pipe(plugins.htmlhint.reporter())
         ;
