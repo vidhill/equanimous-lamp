@@ -7,10 +7,13 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence')
   ;
 
+//var d = new Date();
+
 var htmlVars = {
   staticsUrl: '//libs.vidhill.com',
   jsSuffix: 'min.js',
-  releaseVers: npmPackage.version
+  releaseVers: npmPackage.version,
+  year: new Date().getFullYear()
 };
 
 var plugins = {
