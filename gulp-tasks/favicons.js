@@ -8,7 +8,7 @@ module.exports = function (gulp, plugins, pkg ) {
         developerName: pkg.author,
         start_url: "index.html",
         display: "browser",
-        version: 1.0,
+        version: pkg.version,
         logging: false,
         online: false,
         path: folderName,
@@ -29,7 +29,6 @@ module.exports = function (gulp, plugins, pkg ) {
     };
 
   return function () {
-
      
       gulp.src("src/myicon.png")
         .pipe(plugins.favicons( options ))
