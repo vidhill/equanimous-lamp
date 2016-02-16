@@ -42,6 +42,9 @@ var plugins = {
   uglify: require('gulp-uglify'),
   header: require('gulp-header'),
 
+  //images etc
+  favicons: require("gulp-favicons"),
+
   modernizr: require("modernizr"),
 
   gutil: require('gulp-util'), // gulp utilities
@@ -81,6 +84,8 @@ gulp.task('copy', function (){
     // .pipe(plugins.htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('dest/angular-modules'));
 });
+
+gulp.task('favicons', require('./gulp-tasks/favicons')( gulp, plugins, npmPackage ));
 
 gulp.task('html', require('./gulp-tasks/html')( gulp, plugins, partialLintOpts, htmlVars));
  
