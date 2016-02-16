@@ -1,11 +1,10 @@
 {
+  "classPrefix": "mzr_",
   "options": [
     "html5shiv",
     "setClasses"
   ], 
   "feature-detects": [
-    "css/flexbox",
-    "css/flexwrap",
     "css/vwunit",
     "pointerevents",
     "svg",
