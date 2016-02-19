@@ -1,19 +1,11 @@
 module.exports = function (gulp, plugins, pkg ) {
 
-  var folderName = "favicons/";
+  var folderName = "favicons";
 
   var options = {
-        appName: "David Hill's Amazaball Webapp",
-        appDescription: pkg.description,
-        developerName: pkg.author,
-        start_url: "index.html",
-        display: "browser",
-        version: pkg.version,
         logging: false,
         online: false,
         path: folderName,
-        pipeHTML: false,
-        replace: true,
         icons: {
             android: true,              // Create Android homescreen icon. `boolean`
             appleIcon: true,            // Create Apple touch icons. `boolean`
@@ -30,9 +22,15 @@ module.exports = function (gulp, plugins, pkg ) {
 
   return function () {
      
-      gulp.src("src/myicon.png")
+      return gulp.src("src/myicon.png")
         .pipe(plugins.favicons( options ))
-        .pipe(gulp.dest("dest/" + folderName ));
+        .pipe(gulp.dest("dest/" + folderName ))
+        .on('end', function(){
+
+            // I don't like their manifest, going to make my own
+            plugins.del(['dest/' + folderName + '/manifest.json']);
+
+        });
 
   };
 
