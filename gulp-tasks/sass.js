@@ -1,6 +1,6 @@
 module.exports = function (gulp, plugins) {
     return function () {
-        gulp.src('scss/*.scss')
+        gulp.src('src/scss/*.scss')
             .pipe(plugins.sourcemaps.init())
             //.pipe(debug({title: 'unicorn:'}))
             .pipe(plugins.sass().on('error', plugins.sass.logError))
