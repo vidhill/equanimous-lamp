@@ -7,8 +7,6 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence')
   ;
 
-//var d = new Date();
-
 var htmlVars = {
   staticsUrl: '//libs.vidhill.com',
   jsSuffix: 'min.js',
@@ -21,7 +19,7 @@ var plugins = {
   del: require('del'),
   debug: require('gulp-debug'),
   rename: require("gulp-rename"),
-  fs: require('fs'), 
+  fs: require('fs'),
 
   // css plugins
   sass: require('gulp-sass'),
@@ -33,7 +31,7 @@ var plugins = {
   // html plugins
   htmlhint: require('gulp-htmlhint'),
   htmlMin: require('gulp-htmlmin'),
-  template: require('gulp-template'),
+  lodashTemplate: require('gulp-template'),
   inject: require('gulp-inject'),
 
   // javascript plugins
@@ -49,7 +47,7 @@ var plugins = {
 
   gutil: require('gulp-util'), // gulp utilities
   extend: require('util')._extend,
- 
+
   Stream: require('stream')
 
 };
@@ -75,7 +73,7 @@ gulp.task('clean:js', function(cb) {
 
 
 gulp.task('copy', function (){
-	gulp.src(['src/*', '!src/index.html', '!src/*.css'])
+	gulp.src(['src/*', '!src/index.html', '!src/critical.css', '!src/scss'])
 		.pipe(gulp.dest('dest'));
 
   gulp.src('angular-modules/**/*.html')
@@ -88,7 +86,7 @@ gulp.task('copy', function (){
 gulp.task('favicons', require('./gulp-tasks/favicons')( gulp, plugins, npmPackage ));
 
 gulp.task('html', require('./gulp-tasks/html')( gulp, plugins, partialLintOpts, htmlVars));
- 
+
 gulp.task('watch', function () {
   gulp.watch('angular-modules/**/*.js', ['scripts']);
   gulp.watch('angular-modules/**/*.html', ['html']);
@@ -98,4 +96,3 @@ gulp.task('watch', function () {
 gulp.task('build', function(cb){
     runSequence('clean', [ 'copy', 'sass', 'scripts', 'html' ], cb);
 });
-
