@@ -13,14 +13,14 @@
     <link rel="author" href="humans.txt" />
 	<title>Document </title>
 	<link rel="stylesheet" href="css/styles.css">
-	
+
 	<script src="<%= staticsUrl %>/modernizr/modernizr.<%= jsSuffix %>"></script>
 
 	<!-- inject:css	-->
 	<!-- endinject -->
 
-	
-	
+
+
 </head>
 <body ng-app="dhApp" class="ng-cloak">
 	<!-- inject:partials:html -->
@@ -36,17 +36,17 @@
 			<div ng-view>Give me a sec..</div>
 		</section>
 		<footer>
-			&copy; David Hill <%= year %>
+			&copy; David Hill
 		</footer>
 	</div>
 
 	<script src="<%= staticsUrl %>/components/es5-shim/es5-shim.<%= jsSuffix %>"></script>
-	
+
 	<script src="<%= staticsUrl %>/components/angular/angular.<%= jsSuffix %>"></script>
 	<script src="<%= staticsUrl %>/components/angular-animate/angular-animate.<%= jsSuffix %>"></script>
 	<script src="<%= staticsUrl %>/components/angular-route/angular-route.<%= jsSuffix %>"></script>
 	<script src="<%= staticsUrl %>/components/angular-touch/angular-touch.<%= jsSuffix %>"></script>
-	
+
 	<script src="js/all.js?version=<%= releaseVers %>"></script>
 	<script src="app.js?version=<%= releaseVers %>"></script>
 </body>
