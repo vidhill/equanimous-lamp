@@ -2,8 +2,8 @@
 
 var gulp = require('gulp'),
     npmPackage = require('./package.json'),
-    mzrConfig = require('./config-files/modernizr-config.json'),
-    partialLintOpts = require('./config-files/htmlhint-config.json'),
+    mzrConfig = require('./build-config-files/modernizr-config.json'),
+    partialLintOpts = require('./build-config-files/htmlhint-config.json'),
     runSequence = require('run-sequence')
   ;
 
