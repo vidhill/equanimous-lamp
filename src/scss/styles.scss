@@ -1,5 +1,5 @@
-@import '../third-party-libs/components/modularized-normalize-scss/normalize';
-@import '../node_modules/scut/dist/scut';
+@import '../../third-party-libs/components/modularized-normalize-scss/normalize';
+@import '../../node_modules/scut/dist/scut';
 
 @import 'partials/variables';
 @import 'partials/mixins';
@@ -11,14 +11,14 @@ nav ul {
     @include scut-list-floated();
 }
 
-body { 
-    background: #CCC; 
+body {
+    background: #CCC;
 }
 
 .wrapper {
     max-width: 45em;
     background: #FFF;
-    
+
     margin: 0 auto;
 
     & > section, & > nav {
