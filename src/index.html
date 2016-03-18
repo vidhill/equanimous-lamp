@@ -7,10 +7,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="dns-prefetch" href="<%= staticsUrl %>/">
-    <link rel="author" href="humans.txt" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="dns-prefetch" href="<%= staticsUrl %>/">
+  <link rel="author" href="humans.txt" />
 	<title>Document </title>
 	<link rel="stylesheet" href="css/styles.css">
 
@@ -25,20 +25,25 @@
 <body ng-app="dhApp" class="ng-cloak">
 	<!-- inject:partials:html -->
 	<!-- endinject -->
-	<div class="wrapper">
+	<header>
 		<nav ng-controller="dhNavCtrl">
 			<ul>
 				<li> <a href="#/">Home</a> </li>
 				<li ng-repeat="link in links" > <a ng-href="#/page/{{link.path}}" ng-cloak >{{link.title}}</a> </li>
 			</ul>
 		</nav>
+	</header>
+	<main>
+
 		<section>
 			<div ng-view>Give me a sec..</div>
 		</section>
-		<footer>
-			&copy; David Hill
-		</footer>
-	</div>
+	</main>
+	<footer>
+		<div class="footer--content">
+				&copy; David Hill - Top Cat
+		</div>
+	</footer>
 
 	<script src="<%= staticsUrl %>/components/es5-shim/es5-shim.<%= jsSuffix %>"></script>
 

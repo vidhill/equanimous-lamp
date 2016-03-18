@@ -1,0 +1,28 @@
+header {
+  background: $primary-color;
+
+  nav {
+    margin: 0 auto;
+  }
+}
+
+header nav {
+  ul {
+    @include scut-list-floated();
+    color: #FFF;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      padding: 1em;
+
+      transition: background 250ms linear;
+
+      &:hover {
+        background: scale-color($primary-color, $lightness: 15% );
+      }
+
+    }
+  }
+}

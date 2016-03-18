@@ -7,27 +7,26 @@
 // customise the select colour
 ::selection { background-color:#FFCC00; }
 
-nav ul {
-    @include scut-list-floated();
-}
+* { box-sizing: border-box; }
 
 body {
     background: #CCC;
 }
 
-.wrapper {
-    max-width: 45em;
+@import "partials/layout/header";
+@import "partials/layout/footer";
+
+header nav, main, .footer--content {
+  max-width: map-get($mainLayout, max-width);
+}
+
+
+main {
     background: #FFF;
 
     margin: 0 auto;
 
-    & > section, & > nav {
+    & > section {
         padding: 1em;
     }
-}
-
-footer {
-    background: #333;
-    color: #EEE;
-    padding: 1em 2em;
 }
