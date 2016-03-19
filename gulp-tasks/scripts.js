@@ -8,7 +8,7 @@ module.exports = function (gulp, plugins, pkg ) {
 
       gulp.src(['angular-modules/**/*.js', 'src/**/*.js'])
         .pipe(plugins.eslint({
-          configFile: 'build-config-files/.eslintrc',
+          extends: 'eslint:recommended',
           globals: {
               'angular': true
           },
