@@ -9,7 +9,6 @@ module.exports = function (gulp, plugins, pkg ) {
         .pipe(plugins.eslint({
           configFile: 'build-config-files/.eslintrc',
           globals: {
-              'jQuery': false,
               'angular': false
           },
           envs: [

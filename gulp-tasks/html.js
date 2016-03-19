@@ -1,8 +1,12 @@
 module.exports = function(gulp, plugins, config, htmlVars){
 
+    var getFileContents = function(myFile){
+        return myFile.contents.toString('utf8');
+    };
+
     var angularTemplateTag = function (path, file) {
         var scriptTag = '<script type="text/ng-template" id="' + path.substr(1) + '">'; // remove forward slash
-        return scriptTag + file.contents.toString('utf8') + '</script>';
+        return scriptTag + getFileContents(file) + '</script>';
     };
 
     var templateStream =
@@ -12,6 +16,27 @@ module.exports = function(gulp, plugins, config, htmlVars){
             .pipe(plugins.htmlhint.reporter())
         ;
 
+    var headInject = {
+      starttag: '<!-- inject:head -->',
+      transform: function(filePath, file) {
+          return getFileContents(file);
+      }
+    };
+
+    var cssInject = {
+      starttag: '<!-- inject:css -->',
+      transform: function(filePath, file) {
+          return '<style>' + getFileContents(file) + '</style>';
+      }
+    };
+
+    var angularTemplateInject = {
+      starttag: '<!-- inject:partials:{{ext}} -->',
+      transform: function (filePath, file) {
+          // create angular template tag for each
+          return angularTemplateTag(filePath, file);
+      }
+    };
 
     return function(){
 
@@ -27,23 +52,17 @@ module.exports = function(gulp, plugins, config, htmlVars){
             .pipe(plugins.htmlhint(pageLintConfig))
             .pipe(plugins.htmlhint.reporter())
             .pipe(plugins.inject(
-                gulp.src('src/critical.css')
-                    .pipe(plugins.cssmin()),
-                {
-                    transform: function(filePath, file) {
-                        return '<style>' + file.contents.toString('utf8') + '</style>';
-                    }
-                }
+                gulp.src('src/html-partials/head.html')
+                  .pipe(plugins.htmlMin({ collapseWhitespace: true })) // minify contents of head.html
+                , headInject
+            ))
+            .pipe(plugins.inject(
+                gulp.src('src/critical.css').pipe(plugins.cssmin()), cssInject
             ))
             .pipe(plugins.inject(
                 templateStream,
-                {
-                    starttag: '<!-- inject:partials:{{ext}} -->',
-                    transform: function (filePath, file) {
-                        return angularTemplateTag(filePath, file);
-                    }
-                })
-            ).pipe(gulp.dest('./dest'));
+                angularTemplateInject)
+            ).pipe(gulp.dest('./dest')); // put index.html into dest
 
     }
 };
