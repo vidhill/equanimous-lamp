@@ -8,7 +8,7 @@ module.exports = function (gulp, plugins, config) {
             cwd: "",
             base: "",
             path: filename,
-            contents: new Buffer(string) 
+            contents: new Buffer(string)
           }));
 
           this.push(null); // end filestream
@@ -19,7 +19,7 @@ module.exports = function (gulp, plugins, config) {
     return function () {
 
       plugins.modernizr.build(config, function (result) {
-        
+
         return fileFromString("modernizr.js", result)
           .pipe(gulp.dest('third-party-libs/modernizr'))
           .pipe(plugins.uglify())
