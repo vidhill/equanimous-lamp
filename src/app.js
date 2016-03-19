@@ -1,11 +1,11 @@
 angular.module('dhApp', [
     'ngRoute',
     'homePage'
-    ])
-    .config(['$routeProvider', function($routeProvider){
+])
+    .config(['$routeProvider', function ($routeProvider){
         $routeProvider
             .when('/page/contact', {
-                template: 'Contact Details',
+                template: 'Contact Details'
             })
             .when('/page/link2', {
                 template: 'Page foo'
@@ -21,7 +21,7 @@ angular.module('dhApp', [
             });
 
     }])
-    .controller('dhNavCtrl', ['$scope', '$location', function($scope, $location){
+    .controller('dhNavCtrl', ['$scope', '$location', function ($scope, $location){
         $scope.links = [
             { title: 'Home', path: '' },
             { title: 'Contact', path: 'page/contact' },
@@ -30,10 +30,8 @@ angular.module('dhApp', [
             { title: 'Link 4', path: 'page/link4' }
         ];
 
-        $scope.isActive = function(route){
+        $scope.isActive = function (route){
             return $location.path() === '/'+ route.path;
-        }
-
-
+        };
 
     }]);
