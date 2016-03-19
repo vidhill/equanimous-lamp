@@ -82,6 +82,11 @@ gulp.task('copy', function (){
     .pipe(plugins.htmlhint.reporter())
     // .pipe(plugins.htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('dest/angular-modules'));
+
+  // copy modernizr into dest
+  gulp.src('third-party-libs/modernizr/*.js')
+    .pipe(gulp.dest('dest/modernizr'));
+
 });
 
 gulp.task('favicons', require('./gulp-tasks/favicons')( gulp, plugins, npmPackage ));
@@ -90,7 +95,7 @@ gulp.task('html', require('./gulp-tasks/html')( gulp, plugins, partialLintOpts, 
 
 gulp.task('watch', function () {
   gulp.watch(['angular-modules/**/*.js', 'src/app.js'], ['scripts', 'copy']);
-  gulp.watch(['angular-modules/**/*.html', 'src/index.html'], ['html']); 
+  gulp.watch(['angular-modules/**/*.html', 'src/index.html'], ['html']);
   gulp.watch('src/scss/**/*.scss', ['sass']);
 });
 

@@ -22,9 +22,12 @@ module.exports = function (gulp, plugins, config) {
 
         return fileFromString("modernizr.js", result)
           .pipe(gulp.dest('third-party-libs/modernizr'))
+          .pipe(gulp.dest('dest/modernizr'))
           .pipe(plugins.uglify())
           .pipe(plugins.rename({extname: '.min.js' }))
-          .pipe(gulp.dest('third-party-libs/modernizr'));
+          .pipe(gulp.dest('third-party-libs/modernizr'))
+          .pipe(gulp.dest('dest/modernizr'))
+          ;
 
       });
 
