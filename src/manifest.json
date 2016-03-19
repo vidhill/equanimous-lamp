@@ -2,7 +2,6 @@
   "name": "David Hill Personal Site",
   "short_name": "David Hill Site",
   "display": "browser",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "favicons/android-chrome-36x36.png",
