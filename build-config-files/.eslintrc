@@ -1,16 +1,44 @@
 {
     "rules": {
+        "eqeqeq": [
+            2,
+            "smart"
+        ],
         "indent": [
             2,
             4
+        ],
+        "space-before-function-paren": [
+            1,
+            "always"
         ],
         "quotes": [
             2,
             "single"
         ],
+        "curly": [
+            2,
+            "all"
+        ],
+        "comma-spacing": [
+            1,
+            {
+              "before": false,
+              "after": true
+            }
+        ],
+        "no-implicit-globals": [
+            2
+        ],
         "linebreak-style": [
             2,
             "unix"
+        ],
+        "camelcase": [
+            2,
+            {
+              "properties": "always"
+            }
         ],
         "semi": [
             2,
