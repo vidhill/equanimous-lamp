@@ -29,21 +29,24 @@
 	<!-- inject:partials:html -->
 	<!-- endinject -->
 	<header>
-		<nav ng-controller="dhNavCtrl">
-			<ul>
-				<li> <a href="#/">Home</a> </li>
-				<li ng-repeat="link in links" > <a ng-href="#/page/{{link.path}}" ng-cloak >{{link.title}}</a> </li>
-			</ul>
-		</nav>
+		<div class="header__container">
+			<h1>David Hill</h1>
+			<nav ng-controller="dhNavCtrl">
+				<ul>
+					<li ng-repeat="link in links" > <a ng-href="#/{{link.path}}" ng-class="{ 'active': isActive(link) }" ng-cloak >{{link.title}}</a> </li>
+				</ul>
+			</nav>
+		</div>
 	</header>
-	<main>
 
+	<main>
 		<section>
 			<div ng-view>Give me a sec..</div>
 		</section>
 	</main>
+
 	<footer>
-		<div class="footer--content">
+		<div class="footer__content">
 				&copy; David Hill - Top Cat
 		</div>
 	</footer>

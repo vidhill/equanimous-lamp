@@ -10,23 +10,21 @@
 * { box-sizing: border-box; }
 
 body {
-    background: #CCC;
+    background: $primary-color;
 }
 
 @import "partials/layout/header";
 @import "partials/layout/footer";
 
-header nav, main, .footer--content {
+header .header__container, main section, .footer__content {
   max-width: map-get($mainLayout, max-width);
 }
 
 
 main {
     background: #FFF;
-
-    margin: 0 auto;
-
     & > section {
-        padding: 1em;
+        margin: 0 auto;
+        padding: 1em 1em 4em;
     }
 }

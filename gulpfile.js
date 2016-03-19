@@ -73,7 +73,8 @@ gulp.task('clean:js', function(cb) {
 
 
 gulp.task('copy', function (){
-	gulp.src(['src/*', '!src/index.html', '!src/critical.css', '!src/scss'])
+  // things to copy directly from src into dest
+  gulp.src(['app.js', 'robots.txt', 'humans.txt', 'manifest.json'], { cwd: 'src' })
 		.pipe(gulp.dest('dest'));
 
   gulp.src('angular-modules/**/*.html')
@@ -88,9 +89,9 @@ gulp.task('favicons', require('./gulp-tasks/favicons')( gulp, plugins, npmPackag
 gulp.task('html', require('./gulp-tasks/html')( gulp, plugins, partialLintOpts, htmlVars));
 
 gulp.task('watch', function () {
-  gulp.watch('angular-modules/**/*.js', ['scripts']);
-  gulp.watch('angular-modules/**/*.html', ['html']);
-  gulp.watch('src/scss/*.scss', ['sass']);
+  gulp.watch(['angular-modules/**/*.js', 'src/app.js'], ['scripts', 'copy']);
+  gulp.watch(['angular-modules/**/*.html', 'src/index.html'], ['html']); 
+  gulp.watch('src/scss/**/*.scss', ['sass']);
 });
 
 gulp.task('build', function(cb){

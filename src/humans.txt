@@ -1,5 +1,4 @@
-                            
-/* TEAM */                            
+/* TEAM */
     UI developer: David Hill
     Contact: d [at] vidhill.com
     Twitter: @vidhill
@@ -10,4 +9,4 @@
     Doctype: HTML5
     Standards: HTML5, CSS3
     Components: Modernizr, Angularjs
-    IDE: Sublime Text, Notepad++, FileZilla, Node.js, Gulp
+    IDE: Atom, Sublime Text, Notepad++, FileZilla, Node.js, Gulp

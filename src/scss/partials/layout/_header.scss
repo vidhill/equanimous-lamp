@@ -1,19 +1,34 @@
 header {
   background: $primary-color;
-
-  nav {
-    margin: 0 auto;
-  }
 }
+
+.header__container {
+  margin: 0 auto;
+  padding: 0 1em;
+
+  @include scut-clearfix
+  h1, ul {
+    color: #FFF;
+    float: left;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    padding: 1em 1em 0 0;
+    margin: 0;
+  }
+
+}
+
+
 
 header nav {
   ul {
     @include scut-list-floated();
-    color: #FFF;
-
+    margin-top: 1em;
     a {
-      text-decoration: none;
-      color: inherit;
+      position: relative;
+      @include scut-link-unstyled;
       display: block;
       padding: 1em;
 
@@ -21,6 +36,24 @@ header nav {
 
       &:hover {
         background: scale-color($primary-color, $lightness: 15% );
+      }
+
+      &::after {
+        content: ' ';
+        display: block;
+        background: red;
+        width: 100%;
+        height: 3px;
+
+        @include scut-absolute(n n 0 0);
+
+        transform: scaleX(0);
+        transition: transform 200ms ease;
+
+      }
+
+      &.active::after {
+        transform: scaleX(1);
       }
 
     }
