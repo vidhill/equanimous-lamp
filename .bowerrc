@@ -1,4 +1,7 @@
 {
   "directory": "third-party-libs/components/",
-  "analytics": true
+  "analytics": true,
+  "scripts": {
+        "postinstall": "node ./bower-postinstall.js"
+  }
 }
