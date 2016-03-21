@@ -9,6 +9,7 @@ var gulp = require('gulp'),
 
 var htmlVars = {
   staticsUrl: '//libs.vidhill.com',
+  // staticsUrl: '//cdnjs.cloudflare.com/ajax/libs',
   jsSuffix: 'min.js',
   releaseVers: npmPackage.version,
   year: new Date().getFullYear()
