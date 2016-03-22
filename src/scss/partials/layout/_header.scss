@@ -31,6 +31,7 @@ header nav {
       @include scut-link-unstyled;
       display: block;
       padding: 1em;
+      touch-action: manipulation;
 
       transition: background 250ms linear;
 
