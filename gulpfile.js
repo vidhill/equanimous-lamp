@@ -12,6 +12,7 @@ var htmlVars = {
   // staticsUrl: '//cdnjs.cloudflare.com/ajax/libs',
   jsSuffix: 'min.js',
   releaseVers: npmPackage.version,
+  angularVersion: '1.5.2',
   year: new Date().getFullYear()
 };
 
