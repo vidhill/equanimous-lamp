@@ -11,6 +11,7 @@
 	<title>David Hill Personal Site</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="dns-prefetch" href="<%= staticsUrl %>/">
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 
 	<!-- inject:head	-->
 	<!-- endinject -->
@@ -59,5 +60,22 @@
 
 	<script src="js/all.js?version=<%= releaseVers %>"></script>
 	<script src="app.js?version=<%= releaseVers %>"></script>
+
+	<!-- Scripts to loas after angular deps -->
+	<script src="<%= staticsUrl %>/fontfaceobserver/1.6.5/fontfaceobserver.js"></script>
+	<script type="text/javascript">
+
+	(function (doc) {
+		var observer = new FontFaceObserver('Titillium Web');
+
+		observer.check().then(function () {
+			doc.documentElement.className += " fonts-loaded";
+			//doc.documentElement.classList.add('fonts-loaded');
+		});
+
+	}(document));
+
+
+	</script>
 </body>
 </html>

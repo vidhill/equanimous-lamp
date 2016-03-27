@@ -28,3 +28,10 @@ main {
         padding: 1em 1em 4em;
     }
 }
+
+.fonts-loaded {
+  h1, h2, h3 {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 400;
+  }
+}
